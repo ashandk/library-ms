@@ -9,15 +9,11 @@
 var express = require('express');
 var app = express();
 var debug = require("debug")("express:server");
-var mongoose = require('mongoose')
-var http = require("http");
+var mongoose = require('mongoose');
+var http = require('http');
 var bodyParser = require('body-parser');
-var multer = require('multer');
-var jsyaml = require('js-yaml');
-var fs = require('fs');
 var config = require('config');
 var verifyToken = require('./middleware/verify-tokens.middleware.js');
-var userController = require('./controllers/user-server.controller.js');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -63,13 +59,11 @@ app.use(function(req, res, next) {
 console.log('Library server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
 var router = express.Router();
 
-//protected
+//protected : authantication
 router.use('/books',verifyToken,require('./controllers/protected-server.controller'));
 
-router.route(config.get('user.route.authenticate'))
-    .post(function(req, res) {
-        return userController.getAuthenticate(req, res);
-    });
+//non protected : non authantication
+router.use('/user',require('./controllers/non-protected-server.controller'));
 
 app.use('/', router); //uses the routes for the extension
 
@@ -77,14 +71,8 @@ app.use('/', router); //uses the routes for the extension
 //                    BASE SETUP
 // ---------------------------------------------------------------//
 
-//add error handler
-//server.on("error", onError);
 
 //start listening on port
-///**
-/* Normalize a port into a number, string, or false.
- */
-
 server.listen(serverPort);
 console.info("Server is listening on port : " + serverPort);
 server.on('error', onError);
