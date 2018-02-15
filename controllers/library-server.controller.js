@@ -48,7 +48,11 @@ module.exports.insertBook = function addBook(req, res, next) {
         .then(function (response) {
             if (response.success == true) {
               res.status(200) // success
-                .send(response.books);
+                .send(
+                    {
+                        'success': true,
+                        'books': response.books
+                    });
             }
             else if (response.success == false) {
                 res.status(201) // success
@@ -85,7 +89,10 @@ exports.deleteBook = function (req, res) {
         .then(function (response) {
             if (response.success == true) {
               res.status(200) // success
-                .send(response.books);
+                .send(
+                    {
+                        'success': true
+                    });
             }
             else if (response.success == false) {
                 res.status(201) // success
