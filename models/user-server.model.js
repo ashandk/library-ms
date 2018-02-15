@@ -4,7 +4,6 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var config = require('config');
 var uuid = require('uuid');
-console.info(config.get('database.library.url'));
 var db = mongoose.createConnection(config.get('database.library.url'));
 // ---------------------------------------------------------------//
 //                   SCHEMA

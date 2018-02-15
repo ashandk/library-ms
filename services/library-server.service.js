@@ -6,7 +6,6 @@ var Library = require('../models/library-server.model.js');
 exports.getAllBooks = function () {
     return Library.find({}).sort({ 'bookName': 1 }).then(function (books) {
         if (books) {
-            console.info(books.length);
             return {
                 'success': true,
                 'books': books
