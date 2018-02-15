@@ -1,0 +1,58 @@
+{
+  "name": "library",
+  "version": "0.0.1",
+  "description": "The library microservice for the zmessenger",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha",
+    "start": "node app.js"
+  },
+  "author": "Ashan Dhananjaya",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.0.1",
+    "aws-sdk": "^2.6.1",
+    "base64url": "^2.0.0",
+    "cookie-parser": "~1.4.3",
+    "bcryptjs": "^2.3.0",
+    "body-parser": "^1.15.2",
+    "chai": "^3.5.0",
+    "config": "1.21.0",
+    "connect": "^3.2.0",
+    "crypto": "0.0.3",
+    "crypto-js": "^3.1.6",
+    "express": "^4.14.0",
+    "gulp": "^3.9.1",
+    "gulp-nodemon": "^2.1.0",
+    "http": "0.0.0",
+    "jasmine-http-server-spy": "^0.3.0",
+    "jimp": "^0.2.27",
+    "js-yaml": "^3.3.0",
+    "jsonwebtoken": "^7.1.6",
+    "kafka-node": "^1.0.5",
+    "kafka-rest": "0.0.4",
+    "mocha": "^3.2.0",
+    "mongoose": "4.6.0",
+    "mongoose-integer": "^0.1.1",
+    "mongoose-unique-validator": "^1.0.2",
+    "multer": "^1.2.0",
+    "node-mongoose-validator": "^1.2.0",
+    "proxyquire": "^1.7.11",
+    "sinon": "^2.1.0",
+    "uuid": "^2.0.2"
+  },
+  "engines": {
+    "node": "~5.6"
+  },
+  "devDependencies": {
+    "gulp-nodemon": "^2.1.0",
+    "jasmine": "^2.5.2",
+    "mocha": "^3.2.0",
+    "should": "^11.2.1"
+  },
+  "keywords": [
+    "swagger"
+  ],
+  "license1": "Apache-2.0",
+  "private": true
+}

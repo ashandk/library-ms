@@ -1,0 +1,7 @@
+{
+  "database": {
+    "library": {
+      "url": "mongodb://ashan:ashan@ds012178.mlab.com:12178/library"
+    }
+  }
+}

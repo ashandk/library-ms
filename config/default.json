@@ -1,0 +1,22 @@
+{
+  "server": {
+    "port": 3020,
+    "app": {
+      "name": "library"
+    }
+  },
+    "database": {
+      "library": {
+        "url": "mongodb://ashan:ashan@ds012178.mlab.com:12178/library"
+      }
+    }
+  ,
+  "library": {
+    "route": {
+      "getAllBooks": "/getAllBooks",
+      "insertBook": "/insertBook",
+      "deleteBook": "/deleteBook/:bookId"
+
+    }
+  }
+}

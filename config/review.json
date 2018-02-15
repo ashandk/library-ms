@@ -1,0 +1,7 @@
+{
+  "database": {
+    "library": {
+      "url": "mongodb:///library"
+    }
+  }
+}
