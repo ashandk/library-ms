@@ -16,7 +16,8 @@ var multer = require('multer');
 var jsyaml = require('js-yaml');
 var fs = require('fs');
 var config = require('config');
-var libraryController = require('./controllers/library-server.controller.js');
+var verifyToken = require('./middleware/verify-tokens.middleware.js');
+var userController = require('./controllers/user-server.controller.js');
 
 // configure app to use bodyParser()
 // this will let us get the data from a POST
@@ -61,18 +62,15 @@ app.use(function(req, res, next) {
  */
 console.log('Library server is listening on port %d (http://localhost:%d)', serverPort, serverPort);
 var router = express.Router();
-router.route(config.get('library.route.getAllBooks'))
-    .get(function(req, res) {
-        return libraryController.getAllBooks(req, res); // string apifunctions here
-    });
-router.route(config.get('library.route.insertBook'))
-    .post(function (req, res) {
-        return libraryController.insertBook(req, res);
-    });
-router.route(config.get('library.route.deleteBook'))
+
+//protected
+router.use('/books',verifyToken,require('./controllers/protected-server.controller'));
+
+router.route(config.get('user.route.authenticate'))
     .post(function(req, res) {
-        return libraryController.deleteBook(req, res);
+        return userController.getAuthenticate(req, res);
     });
+
 app.use('/', router); //uses the routes for the extension
 
 // ---------------------------------------------------------------//

@@ -1,15 +1,15 @@
-var Library = require('../models/library-server.model.js');
+var User = require('../models/user-server.model.js');
 // ---------------------------------------------------------------//
 //                    EXPORT FUNCTIONS 
 // ---------------------------------------------------------------//
 
-exports.getAllBooks = function () {
-    return Library.find({}).sort({ 'bookName': 1 }).then(function (books) {
-        if (books) {
-            console.info(books.length);
+exports.getAuthenticate = function (email) {
+    return User.findOne({"email" : email}).lean().exec(function(err, user){
+        if (user) {
+            console.info(user)
             return {
                 'success': true,
-                'books': books
+                'user' : user
             };
         }else{
             return {
@@ -24,75 +24,4 @@ exports.getAllBooks = function () {
         };
     });
 
-};
-
-exports.addBook = function (bookInfo) {
-    var book = Library(bookInfo);
-
-    return book.save().then(function (result) {
-        return Library.find({}).sort({ 'bookName': 1 }).then(function (books) {
-            if (books) {
-                console.info(books.length);
-                return {
-                    'success': true,
-                    'books': books
-                };
-            }else{
-                return {
-                    'success': false
-
-                };
-            }
-        }, function (error) {
-            console.log(error);
-            return {
-                'success': false
-
-            };
-        });
-
-
-    }, function (error) {
-        console.log(error);
-        return {
-            'success': false
-        };
-    });
-
-};
-
-
-//schedule this
-exports.deleteBook = function (bookId) {
-    return Library.remove({ 'bookId': bookId }).then(function (result) {
-        return Library.find({}).sort({ 'bookName': 1 }).then(function (books) {
-            if (books) {
-                console.info(books.length);
-                return {
-                    'success': true,
-                    'books': books
-                };
-            }else{
-                return {
-                    'success': false
-
-                };
-            }
-        }, function (error) {
-            console.log(error);
-            return {
-                'success': false
-
-            };
-        });
-
-    }, function (error) {
-        var errorCode = "Can't find book" + error;
-        console.log(errorCode);
-        return {
-            'success': false,
-            'error' : errorCode
-        };
-
-    });
 };

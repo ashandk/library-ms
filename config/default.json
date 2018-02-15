@@ -16,7 +16,16 @@
       "getAllBooks": "/getAllBooks",
       "insertBook": "/insertBook",
       "deleteBook": "/deleteBook/:bookId"
-
+    }
+  },
+  "global":{
+    "jwt":{
+      "secret" : "1234"
+    }
+  },
+  "user": {
+    "route": {
+      "authenticate": "/authenticate"
     }
   }
 }

@@ -10,21 +10,17 @@ var db = mongoose.createConnection(config.get('database.library.url'));
 //                   SCHEMA
 // ---------------------------------------------------------------//
 
-var librarySchema = new Schema({
-    bookId: {
+var userSchema = new Schema({
+    email: {
         type: String,
         unique: true,
         default: uuid.v1
     },
-    title: {
+    password: {
         type: String,
         required: true
     },
-    author: {
-        type: String,
-        required: true
-    },
-    introducedDate: {
+    createdDate: {
         type: Date,
         default: Date.now
     }
@@ -34,4 +30,4 @@ var librarySchema = new Schema({
 //                   EXPORT
 // ---------------------------------------------------------------//
 
-module.exports = db.model('Library', librarySchema);
+module.exports = db.model('User', userSchema);
